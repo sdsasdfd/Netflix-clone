@@ -93,7 +93,7 @@ const SearchHistoryPage = () => {
                   </span>
                 </div>
                 <span
-                  className={` py-1 px-3 min-w-20 text-center rounded-full text-sm ${
+                  className={` py-1 px-3 min-w-20 ml-1 text-center rounded-full text-sm ${
                     entry.searchType === "movie"
                       ? "bg-red-600"
                       : entry.searchType === "tv"
