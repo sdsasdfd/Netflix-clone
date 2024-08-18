@@ -10,24 +10,24 @@ export const useAuthStore = create((set) => ({
   signup: async (credentials) => {
     set({ isSigningUp: true });
     try {
-      const res = await axios.post("/api/auth/signup", credentials);
-      set({ user: res.data.user, isSigningUp: false });
+      const response = await axios.post("/api/auth/signup", credentials);
+      set({ user: response.data.user, isSigningUp: false });
 
       toast.success("Account created successfully");
     } catch (error) {
-      toast.error(error.res.data.message || "an error occurred");
+      toast.error(error.response.data.message || "Signup Failed");
       set({ isSigningUp: false, user: null });
     }
   },
   login: async (credentials) => {
     set({ isLoggingIn: true });
     try {
-      const res = await axios.post("/api/auth/login", credentials);
+      const response = await axios.post("/api/auth/login", credentials);
 
-      set({ user: res.data.user, isLoggingIn: false });
+      set({ user: response.data.user, isLoggingIn: false });
     } catch (error) {
       set({ isLoggingIn: false, user: null });
-      toast.error(error.response.data.message || "Logout failed");
+      toast.error(error.response.data.message || "Login failed");
     }
   },
   logout: async () => {
@@ -38,7 +38,7 @@ export const useAuthStore = create((set) => ({
       toast.success("Logged out successfully");
     } catch (error) {
       set({ isLoggingOut: false });
-      toast.error(error.res.data.message || "An error occurred");
+      toast.error(error.res.data.message || "Logout failed");
     }
   },
   authCheck: async () => {
